@@ -79,8 +79,7 @@ expr rbp = do
     x <- Main.any
     t <- peek
 
-    l <- go (lbp t > rbp) [x]
-    return l
+    go (lbp t > rbp) [x]
   where
     go :: Bool -> String -> Parser String
     go False x = return x
@@ -89,10 +88,6 @@ expr rbp = do
         l <- led x t
 
         t' <- peek
-        l' <-
-            if lbp t' > rbp
-                then do
-                    l' <- go True l
-                    return l'
-                else return l
-        return l'
+        if lbp t' > rbp
+            then go True l
+            else return l
