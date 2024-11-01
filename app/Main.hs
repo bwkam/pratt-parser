@@ -47,23 +47,6 @@ any = Parser go where
  go [] = Left "any: end of file"
  go (x:xs) = Right (x, xs)
 
-satisfy :: (Char -> Bool) -> Parser Char
-satisfy f = do
- c <- Main.any
- if f c
-  then return c
-  else Main.fail "satisfy: does not satisfy"
-
-char :: Char -> Parser Char
-char c = satisfy (c ==)
-
-string :: String -> Parser String
-string [] = return []
-string (x:xs) = do
- _ <- char x
- _ <- string xs
- return $ x:xs
-
 peek :: Parser Char
 peek = Parser go where
  go [] = Left "nothing to look at"
