@@ -1,0 +1,3 @@
+my first parser and useful project with haskell
+
+e.g: `runParser (expr 0) "1+2*3+4"`
