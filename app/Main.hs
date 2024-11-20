@@ -60,9 +60,9 @@ peek = Parser go
 
 lbp :: Char -> Int
 lbp x
-    | (x == '+') = 2
-    | (x == '*') = 3
-    | (x == '$') = -1
+    | x == '+' = 2
+    | x == '*' = 3
+    | x == '$' = -1
     | isDigit x = 0
     | otherwise = 0
 
